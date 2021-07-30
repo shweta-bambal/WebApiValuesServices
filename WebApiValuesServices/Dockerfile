@@ -10,8 +10,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["WebApiValuesServices/WebApiValuesServices.csproj", "WebApiValuesServices/"]
-RUN dotnet restore "WebApiValuesServices/WebApiValuesServices.csproj"
+#COPY ["WebApiValuesServices/WebApiValuesServices.csproj", "WebApiValuesServices/"]
+COPY ["WebApiValuesServices.csproj", "WebApiValuesServices/"]
+RUN dotnet restore "WebApiValuesServices.csproj"
 COPY . .
 WORKDIR "/src/WebApiValuesServices"
 RUN dotnet build "WebApiValuesServices.csproj" -c Release -o /app/build
